@@ -209,22 +209,47 @@ def walking1():
               sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
               if PLAY_CAVE.checkForInput(PLAY_MOUSE_POS):
-                death_snake()
-              #if PLAY_WALK.checkForInput(PLAY_MOUSE_POS):
-                #death_tiger()
+                death_spider()
+              if PLAY_WALK.checkForInput(PLAY_MOUSE_POS):
+                death_tiger()
 
         pygame.display.update()
 
 
     
-def death_snake():
+def death_spider():
   #call(["python", "C:/Users/Surya/Documents/PyGameProject/test_video.py"])
       while True:
         screen.blit(death, (0,0))
         MOUSE_POS = pygame.mouse.get_pos()
 
 
-        TEXT = death_font.render('YOU WERE KILLED BY A SNAKE', True, white)
+        TEXT = death_font.render('YOU WERE BITTEN BY A DEADLY SPIDER', True, white)
+        RECT = TEXT.get_rect(center=(690, 100))
+        screen.blit(TEXT, RECT)
+        DEATH_MENU = Button(image=None, pos=(700, 400), text_input="Main Menu", font=button_font, base_color="green", hovering_color="white")
+        
+        DEATH_MENU.changeColor(MOUSE_POS)
+        DEATH_MENU.update(screen)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+              pygame.quit()
+              sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+              if DEATH_MENU.checkForInput(MOUSE_POS):
+                main_menu()
+
+        pygame.display.update()
+
+def death_tiger():
+  #call(["python", "C:/Users/Surya/Documents/PyGameProject/test_video.py"])
+      while True:
+        screen.blit(death, (0,0))
+        MOUSE_POS = pygame.mouse.get_pos()
+
+
+        TEXT = death_font.render('YOU WERE KILLED BY A TIGER', True, white)
         RECT = TEXT.get_rect(center=(690, 100))
         screen.blit(TEXT, RECT)
         DEATH_MENU = Button(image=None, pos=(700, 400), text_input="Main Menu", font=button_font, base_color="green", hovering_color="white")
